@@ -21,10 +21,12 @@ describe('customized CKB', () => {
     recRate: 'Use with Caution',
   };
 
+  const FINAL_CKB_COUNT = 55;
+
   test('no ckb config input', () => {
     const myAdvisor = new Advisor();
     const finalCKB = myAdvisor.CKB;
-    expect(Object.keys(finalCKB).length).toBe(52);
+    expect(Object.keys(finalCKB).length).toBe(FINAL_CKB_COUNT);
   });
 
   test('custom only', () => {
@@ -35,7 +37,7 @@ describe('customized CKB', () => {
     };
     const myAdvisor = new Advisor({ ckbCfg: myCKBCfg });
     const finalCKB = myAdvisor.CKB;
-    expect(Object.keys(finalCKB).length).toBe(53);
+    expect(Object.keys(finalCKB).length).toBe(FINAL_CKB_COUNT + 1);
   });
 
   test('include only', () => {
@@ -53,7 +55,7 @@ describe('customized CKB', () => {
     };
     const myAdvisor = new Advisor({ ckbCfg: myCKBCfg });
     const finalCKB = myAdvisor.CKB;
-    expect(Object.keys(finalCKB).length).toBe(51);
+    expect(Object.keys(finalCKB).length).toBe(FINAL_CKB_COUNT - 1);
   });
 
   test('custom && exclude && include', () => {
@@ -90,7 +92,7 @@ describe('customized CKB', () => {
     };
     const myAdvisor = new Advisor({ ckbCfg: myCKBCfg });
     const finalCKB = myAdvisor.CKB;
-    expect(Object.keys(finalCKB).length).toBe(51);
+    expect(Object.keys(finalCKB).length).toBe(FINAL_CKB_COUNT - 2 + 1);
     expect(finalCKB).toHaveProperty('fufu_chart');
   });
 
